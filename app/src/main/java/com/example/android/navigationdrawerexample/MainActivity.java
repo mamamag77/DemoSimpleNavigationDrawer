@@ -28,6 +28,7 @@ import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -228,11 +229,22 @@ public class MainActivity extends Activity {
                 Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_planet, container, false);
             int i = getArguments().getInt(ARG_PLANET_NUMBER);
+
+            Log.d("debug", "i=" + i);
+
             String planet = getResources().getStringArray(R.array.planets_array)[i];
 
             int imageId = getResources().getIdentifier(planet.toLowerCase(Locale.getDefault()),
                             "drawable", getActivity().getPackageName());
+
+            Log.d("debug", "imageId=" + imageId);
+
             ((ImageView) rootView.findViewById(R.id.image)).setImageResource(imageId);
+
+            if (i==2){
+                ((ImageView) rootView.findViewById(R.id.image)).setImageResource(R.drawable.earth);
+            }
+
             getActivity().setTitle(planet);
             return rootView;
         }

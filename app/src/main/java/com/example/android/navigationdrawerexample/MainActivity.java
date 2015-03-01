@@ -186,6 +186,20 @@ public class MainActivity extends Activity {
 
             return;
         }
+
+        if (position==2){
+            Fragment fragment = new FragmentTwe();
+            FragmentManager fragmentManager = getFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+
+            // update selected item and title, then close the drawer
+            mDrawerList.setItemChecked(position, true);
+            setTitle("menu title");
+            mDrawerLayout.closeDrawer(mDrawerList);
+
+            return;
+        }
+
         if (position==3){
             Fragment fragment = new FragmentThree();
             FragmentManager fragmentManager = getFragmentManager();
@@ -288,6 +302,23 @@ public class MainActivity extends Activity {
             View rootView = inflater.inflate(R.layout.fragment_1, container, false);
 
             getActivity().setTitle("FRAGMENT 1 XXX");
+            return rootView;
+        }
+    }
+
+    public static class FragmentTwe extends Fragment {
+        public static final String ARG_PLANET_NUMBER = "planet_number";
+
+        public FragmentTwe() {
+            // Empty constructor required for fragment subclasses
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.fragment_2, container, false);
+
+            getActivity().setTitle("FRAGMENT 1 hello");
             return rootView;
         }
     }
